@@ -1,4 +1,4 @@
-package com.example.batiqueapp.ui.camera
+package com.example.batiqueapp.camera
 
 import android.content.Intent
 import android.os.Bundle

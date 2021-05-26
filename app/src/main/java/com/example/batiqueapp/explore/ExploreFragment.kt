@@ -1,4 +1,4 @@
-package com.example.batiqueapp.ui.explore
+package com.example.batiqueapp.explore
 
 import android.os.Bundle
 import android.view.LayoutInflater

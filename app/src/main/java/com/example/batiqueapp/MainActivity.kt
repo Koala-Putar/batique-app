@@ -4,11 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.batiqueapp.ui.camera.CameraActivity
-import com.example.batiqueapp.ui.explore.ExploreFragment
-import com.example.batiqueapp.ui.favorite.FavoriteFragment
-import com.example.batiqueapp.ui.history.HistoryFragment
-import com.example.batiqueapp.ui.home.HomeFragment
+import com.example.batiqueapp.camera.CameraActivity
+import com.example.batiqueapp.explore.ExploreFragment
+import com.example.batiqueapp.favorite.FavoriteFragment
+import com.example.batiqueapp.history.HistoryFragment
+import com.example.batiqueapp.home.HomeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {

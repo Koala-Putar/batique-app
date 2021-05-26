@@ -1,4 +1,4 @@
-package com.example.batiqueapp.ui.home
+package com.example.batiqueapp.favorite
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,20 +8,21 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.batiqueapp.R
 
-class HomeFragment : Fragment() {
+class FavoriteFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+
+        return inflater.inflate(R.layout.fragment_favorite, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Toast.makeText(context, "Welcome to Home", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Welcome to Favorite", Toast.LENGTH_SHORT).show()
     }
 
 }

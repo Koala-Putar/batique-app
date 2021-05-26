@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BatiqueApp">
-        <activity android:name=".ui.detail.DetailActivity"></activity>
+        <activity android:name="com.example.batiqueapp.detail.DetailActivity"></activity>
         <activity
-            android:name=".ui.camera.CameraActivity"
+            android:name="com.example.batiqueapp.camera.CameraActivity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

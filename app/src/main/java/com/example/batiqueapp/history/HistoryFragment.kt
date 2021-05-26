@@ -1,4 +1,4 @@
-package com.example.batiqueapp.ui.history
+package com.example.batiqueapp.history
 
 import android.os.Bundle
 import android.view.LayoutInflater
