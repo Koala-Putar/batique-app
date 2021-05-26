@@ -1,1 +1,2 @@
 # batique-app
+Batique App is a object detection application of batik. This project aims to build a mobile application that makes it easier for people to understand about batik type, region of origin, and it’s cultural value anywhere anytime. We try to achieve this by making elegant and user friendly applications revolving around batik object detection features that classify which batik pattern it belongs to and provide useful information about it. Current project will not try to link to any merchant or other kind of business as it is for educational purposes only.
