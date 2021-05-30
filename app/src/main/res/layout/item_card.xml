@@ -20,7 +20,7 @@
         <ImageView
             android:id="@+id/iv_poster"
             android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_height="225dp"
             android:scaleType="fitXY"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"

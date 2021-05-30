@@ -40,8 +40,8 @@ class BatikRepository private constructor(
             }
 
             override fun shouldFetch(data: List<Batik>?): Boolean =
-//                data == null || data.isEmpty()
-                    true // ganti dengan true jika ingin selalu mengambil data dari internet
+                data == null || data.isEmpty()
+                    // true ganti dengan true jika ingin selalu mengambil data dari internet
 
             override suspend fun createCall(): Flow<ApiResponse<List<BatikResponse>>> =
                     remoteDataSource.getAllBatik()
