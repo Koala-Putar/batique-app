@@ -37,6 +37,12 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    aaptOptions {
+        noCompress "tflite"
+    }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {

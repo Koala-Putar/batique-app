@@ -53,7 +53,7 @@ class CameraActivity : AppCompatActivity() {
         }, ContextCompat.getMainExecutor(this))
 
         val localModel = LocalModel.Builder()
-                .setAbsoluteFilePath("object_detection.tflite")
+                .setAssetFilePath("batik_object_detection.tflite")
                 .build()
 
         val customObjectDetectorOptions = CustomObjectDetectorOptions.Builder(localModel)
@@ -79,7 +79,7 @@ class CameraActivity : AppCompatActivity() {
         preview.setSurfaceProvider(binding.previewView.surfaceProvider)
 
         val imageAnalysis = ImageAnalysis.Builder()
-                .setTargetResolution(Size(224, 224))
+                .setTargetResolution(Size(1200, 720))
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                 .build()
 
