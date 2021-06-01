@@ -5,8 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.batiqueapp.core.data.source.local.entity.BatikEntity
+import com.example.batiqueapp.core.data.source.local.entity.CategoryEntity
 
-@Database(entities = [BatikEntity::class], version = 1, exportSchema = false)
+@Database(entities = [BatikEntity::class, CategoryEntity::class], version = 1, exportSchema = false)
 abstract class BatikDatabase : RoomDatabase() {
 
     abstract fun batikDao(): BatikDao

@@ -53,7 +53,7 @@ class CameraActivity : AppCompatActivity() {
         }, ContextCompat.getMainExecutor(this))
 
         val localModel = LocalModel.Builder()
-                .setAssetFilePath("batik_object_detection.tflite")
+                .setAssetFilePath("object_detection.tflite")
                 .build()
 
         val customObjectDetectorOptions = CustomObjectDetectorOptions.Builder(localModel)

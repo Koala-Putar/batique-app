@@ -16,7 +16,7 @@ object ApiConfig {
             .build()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://localhost:8000/")
+            .baseUrl("http://batique-api.scriptsee.xyz/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

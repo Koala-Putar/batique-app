@@ -1,8 +1,11 @@
 package com.example.batiqueapp.core.utils
 
 import com.example.batiqueapp.core.data.source.local.entity.BatikEntity
+import com.example.batiqueapp.core.data.source.local.entity.CategoryEntity
 import com.example.batiqueapp.core.data.source.remote.response.BatikResponse
+import com.example.batiqueapp.core.data.source.remote.response.CategoryBatikResponse
 import com.example.batiqueapp.core.domain.model.Batik
+import com.example.batiqueapp.core.domain.model.Category
 
 object DataMapper {
 
@@ -25,6 +28,22 @@ object DataMapper {
         return batikList
     }
 
+    fun mapCategoryResponseToEntities(input: List<CategoryBatikResponse>) : List<CategoryEntity> {
+        val categoryList = ArrayList<CategoryEntity>()
+
+        input.map {
+            val batik = CategoryEntity(
+                id = it.id,
+                name = it.name,
+                description = it.description,
+            )
+
+            categoryList.add(batik)
+        }
+
+        return categoryList
+    }
+
     fun mapEntitiesToDomain(input: List<BatikEntity>): List<Batik> =
             input.map {
                 Batik(
@@ -37,6 +56,15 @@ object DataMapper {
                 )
             }
 
+    fun mapCategoryEntitiesToDomain(input: List<CategoryEntity>): List<Category> =
+        input.map {
+            Category(
+                id = it.id,
+                name = it.name,
+                description = it.description
+            )
+        }
+
     fun mapDomainToEntity(input: Batik) = BatikEntity(
             id = input.id,
             name = input.name,
@@ -44,6 +72,12 @@ object DataMapper {
             image = input.image,
             category = input.category,
             isFavorite = input.isFavorite
+    )
+
+    fun mapCategoryDomainToEntity(input: Category) = CategoryEntity(
+        id = input.id,
+        name = input.name,
+        description = input.description,
     )
 
 }

@@ -4,7 +4,9 @@ import com.example.batiqueapp.core.data.source.local.LocalDataSource
 import com.example.batiqueapp.core.data.source.remote.RemoteDataSource
 import com.example.batiqueapp.core.data.source.remote.network.ApiResponse
 import com.example.batiqueapp.core.data.source.remote.response.BatikResponse
+import com.example.batiqueapp.core.data.source.remote.response.CategoryBatikResponse
 import com.example.batiqueapp.core.domain.model.Batik
+import com.example.batiqueapp.core.domain.model.Category
 import com.example.batiqueapp.core.domain.repository.IBatikRepository
 import com.example.batiqueapp.core.utils.AppExecutors
 import com.example.batiqueapp.core.utils.DataMapper
@@ -49,6 +51,26 @@ class BatikRepository private constructor(
             override suspend fun saveCallResult(data: List<BatikResponse>) {
                 val batikList = DataMapper.mapResponsesToEntities(data)
                 localDataSource.insertBatik(batikList)
+            }
+        }.asFlow()
+
+    override fun getAllCategory(): Flow<Resource<List<Category>>> =
+        object : NetworkBoundResource<List<Category>, List<CategoryBatikResponse>>() {
+            override fun loadFromDB(): Flow<List<Category>> {
+                return localDataSource.getAllCategory().map {
+                    DataMapper.mapCategoryEntitiesToDomain(it)
+                }
+            }
+
+            override fun shouldFetch(data: List<Category>?): Boolean =
+                data == null || data.isEmpty()
+
+            override suspend fun createCall(): Flow<ApiResponse<List<CategoryBatikResponse>>> =
+                remoteDataSource.getAllCategory()
+
+            override suspend fun saveCallResult(data: List<CategoryBatikResponse>) {
+                val categoryList = DataMapper.mapCategoryResponseToEntities(data)
+                localDataSource.insertCategory(categoryList)
             }
         }.asFlow()
 
