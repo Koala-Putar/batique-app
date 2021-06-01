@@ -3,6 +3,7 @@ package com.example.batiqueapp.core.ui
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.batiqueapp.archive.ArchiveViewModel
 import com.example.batiqueapp.core.di.Injection
 import com.example.batiqueapp.core.domain.usecase.BatikUseCase
 import com.example.batiqueapp.detail.DetailViewModel
@@ -31,6 +32,9 @@ class ViewModelFactory private constructor(private val batikUseCase: BatikUseCas
                 }
                 modelClass.isAssignableFrom(ExploreViewModel::class.java) -> {
                     ExploreViewModel(batikUseCase) as T
+                }
+                modelClass.isAssignableFrom(ArchiveViewModel::class.java) -> {
+                    ArchiveViewModel(batikUseCase) as T
                 }
                 modelClass.isAssignableFrom(FavoriteViewModel::class.java) -> {
                     FavoriteViewModel(batikUseCase) as T

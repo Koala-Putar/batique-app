@@ -10,11 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.batiqueapp.R
+import com.example.batiqueapp.archive.ArchiveActivity
 import com.example.batiqueapp.core.data.Resource
 import com.example.batiqueapp.core.ui.CategoryAdapter
 import com.example.batiqueapp.core.ui.ViewModelFactory
 import com.example.batiqueapp.databinding.FragmentExploreBinding
-import com.example.batiqueapp.detail.DetailActivity
 
 class ExploreFragment : Fragment() {
 
@@ -39,8 +39,9 @@ class ExploreFragment : Fragment() {
 
             val categoryActivity = CategoryAdapter()
             categoryActivity.onItemClick = { selectedData ->
-                val intent = Intent(activity, DetailActivity::class.java)
-                Toast.makeText(context, "Click : ${selectedData.name}", Toast.LENGTH_SHORT).show()
+                val intent = Intent(activity, ArchiveActivity::class.java)
+                intent.putExtra(ArchiveActivity.EXTRA_DATA, selectedData)
+                startActivity(intent)
             }
 
             val factory = ViewModelFactory.getInstance(requireActivity())
