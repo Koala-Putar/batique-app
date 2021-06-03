@@ -2,6 +2,7 @@ package com.example.batiqueapp.archive
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,25 +32,26 @@ class ArchiveActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val archiveAdapter = ArchiveAdapter()
 
-        val factory = ViewModelFactory.getInstance(this)
-        archiveViewModel = ViewModelProvider(this, factory)[ArchiveViewModel::class.java]
+        val factory = ViewModelFactory.getInstance(this@ArchiveActivity)
+        archiveViewModel = ViewModelProvider(this@ArchiveActivity, factory)[ArchiveViewModel::class.java]
 
         if (detailCategory != null) {
-            archiveViewModel.setSelectedCategory(detailCategory.name)
+            archiveViewModel.showCategoryBy(detailCategory.name).observe(this@ArchiveActivity, { dataBatik ->
+                if(dataBatik != null) {
+                    archiveAdapter.setData(dataBatik)
+                }
+                Log.d("ArchiveActivity: ", dataBatik.toString())
+            })
         }
 
-        archiveViewModel.categoryBy.observe(this, { dataBatik ->
-            archiveAdapter.setData(dataBatik)
-        })
-
         with(binding.rvBatik) {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = LinearLayoutManager(this@ArchiveActivity)
             setHasFixedSize(true)
-            adapter = archiveAdapter
+            this.adapter = archiveAdapter
         }
 
         archiveAdapter.onItemClick = { selectedData ->
-            val intent = Intent(this, DetailActivity::class.java)
+            val intent = Intent(this@ArchiveActivity, DetailActivity::class.java)
             intent.putExtra(DetailActivity.EXTRA_DATA, selectedData)
             startActivity(intent)
         }

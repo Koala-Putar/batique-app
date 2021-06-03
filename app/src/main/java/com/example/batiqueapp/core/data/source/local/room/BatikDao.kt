@@ -14,10 +14,10 @@ interface BatikDao {
     @Query("SELECT * FROM category")
     fun getAllCategory(): Flow<List<CategoryEntity>>
 
-    @Query("SELECT * FROM batik where category = :category")
+    @Query("SELECT * FROM batik WHERE category = :category")
     fun getCategoryBy(category: String): Flow<List<BatikEntity>>
 
-    @Query("SELECT * FROM batik where isFavorite = 1")
+    @Query("SELECT * FROM batik WHERE isFavorite = 1")
     fun getAllFavoriteBatik(): Flow<List<BatikEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
