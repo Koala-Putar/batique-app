@@ -19,6 +19,8 @@ class LocalDataSource private constructor(private val batikDao: BatikDao) {
 
     fun getAllBatik(): Flow<List<BatikEntity>> = batikDao.getAllBatik()
 
+    fun getBatikBySearch(search: String): Flow<List<BatikEntity>> = batikDao.getBatikBySearch(search)
+
     fun getAllCategory(): Flow<List<CategoryEntity>> = batikDao.getAllCategory()
 
     fun getAllFavoriteBatik(): Flow<List<BatikEntity>> = batikDao.getAllFavoriteBatik()

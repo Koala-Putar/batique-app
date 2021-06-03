@@ -10,6 +10,8 @@ interface BatikUseCase {
 
     fun getAllBatik(): Flow<Resource<List<Batik>>>
 
+    fun getBatikBySearch(search: String): Flow<List<Batik>>
+
     fun getAllCategory(): Flow<Resource<List<Category>>>
 
     fun getAllFavoriteBatik(): Flow<List<Batik>>

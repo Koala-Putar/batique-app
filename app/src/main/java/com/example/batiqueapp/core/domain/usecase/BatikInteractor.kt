@@ -11,6 +11,8 @@ class BatikInteractor(private val batikRepository: IBatikRepository): BatikUseCa
 
     override fun getAllBatik(): Flow<Resource<List<Batik>>> = batikRepository.getAllBatik()
 
+    override fun getBatikBySearch(search: String): Flow<List<Batik>> = batikRepository.getBatikBySearch(search)
+
     override fun getAllCategory(): Flow<Resource<List<Category>>> = batikRepository.getAllCategory()
 
     override fun getAllFavoriteBatik(): Flow<List<Batik>> = batikRepository.getAllFavoriteBatik()

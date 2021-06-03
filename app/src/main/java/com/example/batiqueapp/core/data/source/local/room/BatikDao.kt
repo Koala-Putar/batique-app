@@ -11,6 +11,9 @@ interface BatikDao {
     @Query("SELECT * FROM batik")
     fun getAllBatik(): Flow<List<BatikEntity>>
 
+    @Query("SELECT * FROM batik WHERE name LIKE :search")
+    fun getBatikBySearch(search: String): Flow<List<BatikEntity>>
+
     @Query("SELECT * FROM category")
     fun getAllCategory(): Flow<List<CategoryEntity>>
 

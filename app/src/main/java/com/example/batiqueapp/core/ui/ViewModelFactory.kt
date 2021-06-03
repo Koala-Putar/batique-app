@@ -11,6 +11,7 @@ import com.example.batiqueapp.explore.ExploreViewModel
 import com.example.batiqueapp.favorite.FavoriteViewModel
 import com.example.batiqueapp.history.HistoryViewModel
 import com.example.batiqueapp.home.HomeViewModel
+import com.example.batiqueapp.search.SearchViewModel
 
 class ViewModelFactory private constructor(private val batikUseCase: BatikUseCase) : ViewModelProvider.NewInstanceFactory() {
 
@@ -45,6 +46,9 @@ class ViewModelFactory private constructor(private val batikUseCase: BatikUseCas
                 }
                 modelClass.isAssignableFrom(DetailViewModel::class.java) -> {
                     DetailViewModel(batikUseCase) as T
+                }
+                modelClass.isAssignableFrom(SearchViewModel::class.java) -> {
+                    SearchViewModel(batikUseCase) as T
                 }
                 else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
             }

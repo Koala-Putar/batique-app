@@ -5,5 +5,8 @@
 
     <string name="no_data">Empty data</string>
     <string name="something_wrong">Oops.. something went wrong</string>
+    <string name="search_result">Search Result</string>
+    <string name="back_button">Back Button</string>
+    <string name="search_now">Search Now</string>
 
 </resources>

@@ -55,6 +55,12 @@ class BatikRepository private constructor(
             }
         }.asFlow()
 
+    override fun getBatikBySearch(search: String): Flow<List<Batik>> {
+        return localDataSource.getBatikBySearch(search).map {
+            DataMapper.mapEntitiesToDomain(it)
+        }
+    }
+
     override fun getAllCategory(): Flow<Resource<List<Category>>> =
         object : NetworkBoundResource<List<Category>, List<CategoryBatikResponse>>() {
             override fun loadFromDB(): Flow<List<Category>> {

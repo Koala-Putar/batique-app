@@ -40,9 +40,6 @@ android {
     aaptOptions {
         noCompress "tflite"
     }
-    dataBinding {
-        enabled = true
-    }
 }
 
 dependencies {

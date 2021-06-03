@@ -14,6 +14,7 @@ import com.example.batiqueapp.core.ui.BatikAdapter
 import com.example.batiqueapp.core.ui.ViewModelFactory
 import com.example.batiqueapp.databinding.FragmentHomeBinding
 import com.example.batiqueapp.detail.DetailActivity
+import com.example.batiqueapp.search.SearchActivity
 
 class HomeFragment : Fragment() {
 
@@ -68,6 +69,18 @@ class HomeFragment : Fragment() {
                 setHasFixedSize(true)
                 adapter = batikAdapter
             }
+
+            binding.btnSearch.setOnClickListener {
+                if(binding.etSearch.text.isEmpty()) {
+                    binding.etSearch.setError("The search field cannot be empty");
+                } else {
+                    val intent = Intent(activity, SearchActivity::class.java)
+                    val searchQuery = "%${binding.etSearch.text}%"
+                    intent.putExtra(SearchActivity.SEARCH_QUERY, searchQuery)
+                    startActivity(intent)
+                }
+            }
+
         }
     }
 
