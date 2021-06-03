@@ -4,6 +4,7 @@ import com.example.batiqueapp.core.data.source.local.entity.BatikEntity
 import com.example.batiqueapp.core.data.source.local.entity.CategoryEntity
 import com.example.batiqueapp.core.data.source.local.room.BatikDao
 import kotlinx.coroutines.flow.Flow
+import java.util.*
 
 class LocalDataSource private constructor(private val batikDao: BatikDao) {
 
@@ -22,6 +23,8 @@ class LocalDataSource private constructor(private val batikDao: BatikDao) {
 
     fun getAllFavoriteBatik(): Flow<List<BatikEntity>> = batikDao.getAllFavoriteBatik()
 
+    fun getAllLatestAccess(): Flow<List<BatikEntity>> = batikDao.getAllLatestAccess()
+
     fun getCategoryBy(category: String): Flow<List<BatikEntity>> = batikDao.getCategoryBy(category)
 
     suspend fun insertBatik(batikList: List<BatikEntity>) = batikDao.insertBatik(batikList)
@@ -31,6 +34,11 @@ class LocalDataSource private constructor(private val batikDao: BatikDao) {
     fun setFavoriteBatik(batik: BatikEntity, newState: Boolean) {
         batik.isFavorite = newState
         batikDao.updateFavoriteBatik(batik)
+    }
+
+    fun setLatestAccessDate(batik: BatikEntity, newDate: Date) {
+        batik.latestAccess = newDate
+        batikDao.updateLatestAccessBatik(batik)
     }
 
 }

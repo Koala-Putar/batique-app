@@ -19,7 +19,8 @@ object DataMapper {
                 description = it.description,
                 image = it.image,
                 category = it.category.name,
-                isFavorite = false
+                isFavorite = false,
+                latestAccess = null
             )
 
             batikList.add(batik)
@@ -52,7 +53,8 @@ object DataMapper {
                     description = it.description,
                     image = it.image,
                     category = it.category,
-                    isFavorite = it.isFavorite
+                    isFavorite = it.isFavorite,
+                    latestAccess = it.latestAccess
                 )
             }
 
@@ -71,7 +73,8 @@ object DataMapper {
             description = input.description,
             image = input.image,
             category = input.category,
-            isFavorite = input.isFavorite
+            isFavorite = input.isFavorite,
+            latestAccess = input.latestAccess
     )
 
     fun mapCategoryDomainToEntity(input: Category) = CategoryEntity(

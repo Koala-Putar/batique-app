@@ -20,6 +20,9 @@ interface BatikDao {
     @Query("SELECT * FROM batik WHERE isFavorite = 1")
     fun getAllFavoriteBatik(): Flow<List<BatikEntity>>
 
+    @Query("SELECT * FROM batik WHERE latestAccess IS NOT NULL ORDER BY latestAccess DESC")
+    fun getAllLatestAccess(): Flow<List<BatikEntity>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertBatik(batik: List<BatikEntity>)
 
@@ -28,5 +31,8 @@ interface BatikDao {
 
     @Update
     fun updateFavoriteBatik(batik: BatikEntity)
+
+    @Update
+    fun updateLatestAccessBatik(batik: BatikEntity)
 
 }

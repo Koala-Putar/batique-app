@@ -12,6 +12,7 @@ import com.example.batiqueapp.core.utils.AppExecutors
 import com.example.batiqueapp.core.utils.DataMapper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import java.util.*
 
 class BatikRepository private constructor(
     private val remoteDataSource: RemoteDataSource,
@@ -81,6 +82,12 @@ class BatikRepository private constructor(
         }
     }
 
+    override fun getAllLatestAccess(): Flow<List<Batik>> {
+        return localDataSource.getAllLatestAccess().map {
+            DataMapper.mapEntitiesToDomain(it)
+        }
+    }
+
     override fun getCategoryBy(category: String): Flow<List<Batik>> {
         return localDataSource.getCategoryBy(category).map {
             DataMapper.mapEntitiesToDomain(it)
@@ -90,6 +97,11 @@ class BatikRepository private constructor(
     override fun setFavoriteBatik(batik: Batik, state: Boolean) {
         val batikEntity = DataMapper.mapDomainToEntity(batik)
         appExecutors.diskIO().execute { localDataSource.setFavoriteBatik(batikEntity, state) }
+    }
+
+    override fun setLatestAccessDate(batik: Batik, date: Date) {
+        val batikEntity = DataMapper.mapDomainToEntity(batik)
+        appExecutors.diskIO().execute { localDataSource.setLatestAccessDate(batikEntity, date) }
     }
 
 }

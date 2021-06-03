@@ -10,6 +10,7 @@ import com.example.batiqueapp.R
 import com.example.batiqueapp.core.domain.model.Batik
 import com.example.batiqueapp.core.ui.ViewModelFactory
 import com.example.batiqueapp.databinding.ActivityDetailBinding
+import java.util.*
 
 class DetailActivity : AppCompatActivity() {
 
@@ -29,28 +30,30 @@ class DetailActivity : AppCompatActivity() {
         detailViewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
 
         val detailBatik = intent.getParcelableExtra<Batik>(EXTRA_DATA)
-        showDetailBatik(detailBatik)
+        val currentDate = Date()
+        if(detailBatik != null) {
+            showDetailBatik(detailBatik)
+            detailViewModel.setLatestAccessDate(detailBatik, currentDate)
+        }
     }
 
-    private fun showDetailBatik(detailBatik: Batik?) {
-        detailBatik?.let {
-            supportActionBar?.title = detailBatik.name
-            binding.tvBatikName.text = detailBatik.name
-            binding.tvBatikCategory.text = detailBatik.category
-            binding.tvBatikDescription.text = detailBatik.description
-            Glide.with(this@DetailActivity)
-                    .load(detailBatik.image)
-                    .into(binding.photo)
+    private fun showDetailBatik(detailBatik: Batik) {
+        supportActionBar?.title = detailBatik.name
+        binding.tvBatikName.text = detailBatik.name
+        binding.tvBatikCategory.text = detailBatik.category
+        binding.tvBatikDescription.text = detailBatik.description
+        Glide.with(this@DetailActivity)
+                .load(detailBatik.image)
+                .into(binding.photo)
 
-            var statusFavorite = detailBatik.isFavorite
+        var statusFavorite = detailBatik.isFavorite
+        setStatusFavorite(statusFavorite)
+        binding.favoriteButton.setOnClickListener {
+            statusFavorite = !statusFavorite
+            detailViewModel.setFavoriteBatik(detailBatik, statusFavorite)
             setStatusFavorite(statusFavorite)
-            binding.favoriteButton.setOnClickListener {
-                statusFavorite = !statusFavorite
-                detailViewModel.setFavoriteBatik(detailBatik, statusFavorite)
-                setStatusFavorite(statusFavorite)
 
-                Toast.makeText(this, "status: $statusFavorite", Toast.LENGTH_SHORT).show()
-            }
+            Toast.makeText(this, "status: $statusFavorite", Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -9,6 +9,7 @@ import com.example.batiqueapp.core.domain.usecase.BatikUseCase
 import com.example.batiqueapp.detail.DetailViewModel
 import com.example.batiqueapp.explore.ExploreViewModel
 import com.example.batiqueapp.favorite.FavoriteViewModel
+import com.example.batiqueapp.history.HistoryViewModel
 import com.example.batiqueapp.home.HomeViewModel
 
 class ViewModelFactory private constructor(private val batikUseCase: BatikUseCase) : ViewModelProvider.NewInstanceFactory() {
@@ -38,6 +39,9 @@ class ViewModelFactory private constructor(private val batikUseCase: BatikUseCas
                 }
                 modelClass.isAssignableFrom(FavoriteViewModel::class.java) -> {
                     FavoriteViewModel(batikUseCase) as T
+                }
+                modelClass.isAssignableFrom(HistoryViewModel::class.java) -> {
+                    HistoryViewModel(batikUseCase) as T
                 }
                 modelClass.isAssignableFrom(DetailViewModel::class.java) -> {
                     DetailViewModel(batikUseCase) as T

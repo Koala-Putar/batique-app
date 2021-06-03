@@ -4,6 +4,7 @@ import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.util.*
 
 @Entity(tableName = "batik")
 data class BatikEntity (
@@ -25,5 +26,8 @@ data class BatikEntity (
         var category: String,
 
         @ColumnInfo(name = "isFavorite")
-        var isFavorite: Boolean = false
+        var isFavorite: Boolean = false,
+
+        @ColumnInfo(name = "latestAccess")
+        var latestAccess: Date?
 )

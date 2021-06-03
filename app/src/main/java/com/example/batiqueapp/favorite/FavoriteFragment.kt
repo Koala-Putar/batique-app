@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.batiqueapp.core.ui.BatikAdapter
+import com.example.batiqueapp.core.ui.ArchiveAdapter
 import com.example.batiqueapp.core.ui.ViewModelFactory
 import com.example.batiqueapp.databinding.FragmentFavoriteBinding
 import com.example.batiqueapp.detail.DetailActivity
@@ -36,8 +36,8 @@ class FavoriteFragment : Fragment() {
 
         if (activity != null) {
 
-            val batikAdapter = BatikAdapter()
-            batikAdapter.onItemClick = { selectedData ->
+            val archiveAdapter = ArchiveAdapter()
+            archiveAdapter.onItemClick = { selectedData ->
                 val intent = Intent(activity, DetailActivity::class.java)
                 intent.putExtra(DetailActivity.EXTRA_DATA, selectedData)
                 startActivity(intent)
@@ -47,14 +47,14 @@ class FavoriteFragment : Fragment() {
             favoriteViewModel = ViewModelProvider(this, factory)[FavoriteViewModel::class.java]
 
             favoriteViewModel.favoriteBatik.observe(viewLifecycleOwner, { dataBatik ->
-                batikAdapter.setData(dataBatik)
+                archiveAdapter.setData(dataBatik)
                 binding.viewEmpty.root.visibility = if (dataBatik.isNotEmpty()) View.GONE else View.VISIBLE
             })
 
             with(binding.rvBatik) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
-                adapter = batikAdapter
+                adapter = archiveAdapter
             }
         }
 
