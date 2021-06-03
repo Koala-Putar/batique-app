@@ -1,10 +1,13 @@
 package com.example.batiqueapp.detail
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.example.batiqueapp.MainActivity
 import com.example.batiqueapp.R
 import com.example.batiqueapp.core.domain.model.Batik
 import com.example.batiqueapp.core.ui.ViewModelFactory
@@ -25,6 +28,11 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.backButton.setOnClickListener {
+            val intent = Intent(this@DetailActivity, MainActivity::class.java)
+            startActivity(intent)
+        }
+
         val factory = ViewModelFactory.getInstance(this)
         detailViewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
 
@@ -33,6 +41,12 @@ class DetailActivity : AppCompatActivity() {
         if(detailBatik != null) {
             showDetailBatik(detailBatik)
             detailViewModel.setLatestAccessDate(detailBatik, currentDate)
+            binding.tvTitlebar.text = detailBatik.name
+
+            binding.btnBuy.setOnClickListener {
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.tokopedia.com/search?st=product&q=Batik ${detailBatik.name}"));
+                startActivity(browserIntent);
+            }
         }
     }
 

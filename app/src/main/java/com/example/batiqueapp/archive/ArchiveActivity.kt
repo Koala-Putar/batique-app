@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.batiqueapp.MainActivity
 import com.example.batiqueapp.core.domain.model.Category
 import com.example.batiqueapp.core.ui.ArchiveAdapter
 import com.example.batiqueapp.core.ui.ViewModelFactory
@@ -24,6 +25,11 @@ class ArchiveActivity : AppCompatActivity() {
         binding = ActivityArchiveBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+
+        binding.backButton.setOnClickListener {
+            val intent = Intent(this@ArchiveActivity, MainActivity::class.java)
+            startActivity(intent)
+        }
 
         val detailCategory = intent.getParcelableExtra<Category>(EXTRA_DATA)
         showDetailCategory(detailCategory)

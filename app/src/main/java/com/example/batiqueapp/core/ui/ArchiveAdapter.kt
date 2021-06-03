@@ -31,6 +31,7 @@ class ArchiveAdapter : RecyclerView.Adapter<ArchiveAdapter.ListViewHolder>() {
                     .into(ivPoster)
                 tvTitle.text = data.name
                 tvCategory.text = data.category
+                tvDescription.text = data.description
             }
         }
 
