@@ -2,7 +2,6 @@ package com.example.batiqueapp.archive
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -40,7 +39,6 @@ class ArchiveActivity : AppCompatActivity() {
                 if(dataBatik != null) {
                     archiveAdapter.setData(dataBatik)
                 }
-                Log.d("ArchiveActivity: ", dataBatik.toString())
             })
         }
 

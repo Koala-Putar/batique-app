@@ -1,7 +1,6 @@
 package com.example.batiqueapp.detail
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -52,8 +51,6 @@ class DetailActivity : AppCompatActivity() {
             statusFavorite = !statusFavorite
             detailViewModel.setFavoriteBatik(detailBatik, statusFavorite)
             setStatusFavorite(statusFavorite)
-
-            Toast.makeText(this, "status: $statusFavorite", Toast.LENGTH_SHORT).show()
         }
     }
 
