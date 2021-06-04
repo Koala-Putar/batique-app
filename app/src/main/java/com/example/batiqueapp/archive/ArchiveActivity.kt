@@ -2,6 +2,7 @@ package com.example.batiqueapp.archive
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,7 @@ import com.example.batiqueapp.detail.DetailActivity
 class ArchiveActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_DATA = "extra_data"
+        const val EXTRA_NAME = "extra_name"
     }
 
     private lateinit var archiveViewModel: ArchiveViewModel
@@ -31,17 +33,33 @@ class ArchiveActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val detailCategory = intent.getParcelableExtra<Category>(EXTRA_DATA)
-        showDetailCategory(detailCategory)
+        var categoryName: String? = null
+        var categoryDescription: String? = null
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        var detailCategory: Category? = intent.getParcelableExtra(EXTRA_DATA)
+        if(detailCategory != null) {
+            categoryName = detailCategory.name
+            categoryDescription = detailCategory.description
+        } else {
+            categoryName = intent.getStringExtra(EXTRA_NAME)
+        }
+
+        if(categoryDescription == null) {
+            binding.tvDescriptionBar.visibility = View.GONE
+        } else {
+            binding.tvDescriptionBar.text = categoryDescription
+            binding.tvDescriptionBar.visibility = View.VISIBLE
+        }
+
+        binding.tvTitlebar.text = categoryName
+
         val archiveAdapter = ArchiveAdapter()
 
         val factory = ViewModelFactory.getInstance(this@ArchiveActivity)
         archiveViewModel = ViewModelProvider(this@ArchiveActivity, factory)[ArchiveViewModel::class.java]
 
-        if (detailCategory != null) {
-            archiveViewModel.showCategoryBy(detailCategory.name).observe(this@ArchiveActivity, { dataBatik ->
+        if (categoryName != null) {
+            archiveViewModel.showCategoryBy(categoryName.toString().trimIndent()).observe(this@ArchiveActivity, { dataBatik ->
                 if(dataBatik != null) {
                     archiveAdapter.setData(dataBatik)
                 }
@@ -60,13 +78,5 @@ class ArchiveActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-    }
-
-    private fun showDetailCategory(detailCategory: Category?) {
-        detailCategory?.let {
-            supportActionBar?.title = detailCategory.name
-            binding.tvTitlebar.text = detailCategory.name
-            binding.tvDescriptionBar.text = detailCategory.description
-        }
     }
 }

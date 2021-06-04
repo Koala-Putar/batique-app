@@ -2,6 +2,7 @@ package com.example.batiqueapp.camera
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -15,6 +16,7 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
+import com.example.batiqueapp.archive.ArchiveActivity
 import com.example.batiqueapp.databinding.ActivityCameraBinding
 import com.google.common.util.concurrent.ListenableFuture
 import com.google.mlkit.common.model.LocalModel
@@ -24,7 +26,6 @@ import com.google.mlkit.vision.objects.ObjectDetector
 import com.google.mlkit.vision.objects.custom.CustomObjectDetectorOptions
 
 class CameraActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityCameraBinding
 
     private lateinit var objectDetector: ObjectDetector
@@ -95,9 +96,22 @@ class CameraActivity : AppCompatActivity() {
                         .addOnSuccessListener { objects ->
                             for (i in objects) {
                                 if(binding.parentPreviewView.childCount > 1) binding.parentPreviewView.removeViewAt(1)
+                                var text = i.labels.firstOrNull()?.text ?: "Undefined"
+
                                 val element = Draw(context = this,
                                         rect = i.boundingBox,
-                                        text = i.labels.firstOrNull()?.text ?: "Undefined")
+                                        text = text)
+
+                                text = text.replace('-', ' ')
+                                text = text.split(' ').joinToString(" ") { it.capitalize() }
+
+                                if(text != "Undefined") {
+                                    element.setOnClickListener {
+                                        val intent = Intent(this@CameraActivity, ArchiveActivity::class.java)
+                                        intent.putExtra(ArchiveActivity.EXTRA_NAME, text)
+                                        startActivity(intent)
+                                    }
+                                }
 
                                 binding.parentPreviewView.addView(element)
                             }

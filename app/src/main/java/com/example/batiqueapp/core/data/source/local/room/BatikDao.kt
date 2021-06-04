@@ -30,7 +30,7 @@ interface BatikDao {
     suspend fun insertBatik(batik: List<BatikEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCategory(batik: List<CategoryEntity>)
+    suspend fun insertCategory(category: List<CategoryEntity>)
 
     @Update
     fun updateFavoriteBatik(batik: BatikEntity)
