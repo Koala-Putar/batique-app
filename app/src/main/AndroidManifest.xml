@@ -7,9 +7,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/batique_kecil"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/batique_kecil"
         android:supportsRtl="true"
         android:theme="@style/Theme.BatiqueApp">
         <activity android:name=".search.SearchActivity"

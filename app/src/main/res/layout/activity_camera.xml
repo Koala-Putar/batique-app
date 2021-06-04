@@ -6,29 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".camera.CameraActivity">
 
-    <ImageButton
-        android:id="@+id/back_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_arrow_back_24"
-        android:background="@android:color/transparent"
-        android:padding="12dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="6dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="Back Button" />
-
-    <TextView
-        android:id="@+id/tv_titlebar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textSize="20dp"
-        app:layout_constraintStart_toEndOf="@id/back_button"
-        app:layout_constraintTop_toTopOf="@id/back_button"
-        android:text="Object Detection Fiture" />
-
     <RelativeLayout
         android:id="@+id/parentPreviewView"
         android:layout_width="match_parent"
